@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Purchase from './pages/Purchase.tsx'
+import Purchase from './pages/NewPurchase/NewPurchase.tsx'
 import Home from './pages/Home/Home.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
