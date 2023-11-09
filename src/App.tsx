@@ -1,20 +1,17 @@
 import './App.css'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
-import PurchaseButton from './components/PurchaseButton/PurchaseButton'
-import Purchases from './components/Purchases/Purchases'
+
+
+import { Outlet } from "react-router-dom"
 
 function App() {
 
   return (
     <>
       <Header />
-      <main>
-        <Purchases />
-        <PurchaseButton />
-      </main>
+      <Outlet />
       <Footer />
-
     </>
   )
 }
