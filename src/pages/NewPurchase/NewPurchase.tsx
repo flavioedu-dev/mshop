@@ -1,8 +1,10 @@
+import { FormEvent } from "react"
 import "./NewPurchase.scss"
 
 const Purchase = () => {
 
-  const createNewPurchase = () => {
+  const createNewPurchase = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
     console.log("Criando nova feira")
   }
 
@@ -11,7 +13,7 @@ const Purchase = () => {
       <form className="NewPurchase" onSubmit={createNewPurchase}>
         <div>
           <label>Nome</label>
-          <input type="text" name="name" id="name"placeholder="Feira da quinta (Opcional)" />
+          <input type="text" name="name" id="name"placeholder="Feira da mensal (Opcional)" />
         </div>
         <div>
           <label>Local</label>
