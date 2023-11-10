@@ -1,8 +1,9 @@
+import PurchaseItem from "@/components/PurchaseItem/PurchaseItem";
 import "./PurchaseItems.scss"
 
 import { useState, useEffect } from "react";
 
-type PurchaseItem = {
+export type PurchaseItemType = {
   id: number,
   name: string,
   price: number,
@@ -13,7 +14,7 @@ const PurchaseItems = () => {
 
   const [totalValue, setTotalValue] = useState<number>(0)
 
-  const purchaseItems: PurchaseItem[] = [
+  const purchaseItems: PurchaseItemType[] = [
     {
       id: 1,
       name: "Arroz",
@@ -35,20 +36,19 @@ const PurchaseItems = () => {
   ]
 
   useEffect(() => {
+    setTotalValue(0)
+
     purchaseItems.map((item) => {
       setTotalValue(prev => prev + (item.price * item.quantity))
     })
-  }, [])
+  }, [purchaseItems])
 
   return (
     <>
     <section className="PurchaseItems">
       <h4>Feira Mensal - Mercado São Luiz</h4>
       {purchaseItems.map((item) => (
-        <div>
-          <p key={item.id}>{item.name} x{item.quantity} - <span> ${item.price.toFixed(2)}</span></p>
-          <p>${(item.price * item.quantity).toFixed(2)}</p>
-        </div>
+        <PurchaseItem item={item} />
       ))}
     </section>
     <section className="BtnAddItem">

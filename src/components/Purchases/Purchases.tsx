@@ -12,37 +12,42 @@ const Purchases = () => {
     navigate(`/purchase/${id}`)
   }
 
-  const x = true;
+  type PurchaseType = {
+    id: number,
+    name: string,
+    place: string,
+    date: Date
+  }
 
-  const purchases = [
+  const purchases: PurchaseType[] = [
     {
       id: 1,
-      nome: "Feira mensal",
-      local: "Mercado São Luiz",
-      data: "10/10/2010"
+      name: "Feira mensal",
+      place: "Mercado São Luiz",
+      date: new Date("10/10/2023")
     },
     {
       id: 2,
-      nome: "",
-      local: "Mercado São Luiz",
-      data: "10/11/2010"
+      name: "",
+      place: "Mercado São Luiz",
+      date: new Date("10/11/2023")
     },
     {
       id: 3,
-      nome: "Feira mensal 3",
-      local: "Mercado São Luiz",
-      data: "10/12/2010"
+      name: "Feira mensal 3",
+      place: "Mercado São Luiz",
+      date: new Date("10/12/2023")
     },
   ]
 
-  if(x) {
+  if(purchases.length !== 0) {
     return (
       <>
         {purchases.map((purchase) => (
-          purchase.nome ? (
-            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(purchase.id)}><p>{purchase.nome + " - " + purchase.data}</p>  <img src={moveImg} alt="move" /></section>
+          purchase.name ? (
+            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(purchase.id)}><p>{purchase.name + " - " + purchase.date.toLocaleDateString()}</p>  <img src={moveImg} alt="move" /></section>
           ) : (
-            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(purchase.id)}><p>{purchase.local + " - " + purchase.data}</p> <img src={moveImg} alt="move" /></section>
+            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(purchase.id)}><p>{purchase.place + " - " + purchase.date.toLocaleDateString()}</p> <img src={moveImg} alt="move" /></section>
           )
         ))}
       </>
