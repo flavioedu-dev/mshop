@@ -2,6 +2,7 @@ import PurchaseItem from "@/components/PurchaseItem/PurchaseItem";
 import "./PurchaseItems.scss"
 
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 export type PurchaseItemType = {
   id: number,
@@ -11,6 +12,8 @@ export type PurchaseItemType = {
 }
 
 const PurchaseItems = () => {
+
+  const navigate = useNavigate()
 
   const [totalValue, setTotalValue] = useState<number>(0)
 
@@ -53,7 +56,7 @@ const PurchaseItems = () => {
     </section>
     <section className="BtnAddItem">
       <p>Total <span>${totalValue.toFixed(2)}</span></p>
-      <button>Adicionar item</button>
+      <button onClick={() => navigate("/purchase/:id/new-item")} >Adicionar item</button>
     </section>
     </>
   )
