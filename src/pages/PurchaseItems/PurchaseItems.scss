@@ -1,0 +1,45 @@
+.PurchaseItems {
+    text-align: center;
+    padding-top: 2rem;
+    height: 70vh;
+
+    border-bottom: 1px solid rgb(0, 0, 0, 0.50);
+
+    & > h4 {
+        margin-bottom: 1rem;
+    }
+
+    & > div {
+        display: flex;
+        justify-content: space-between;
+        padding: 1.2rem;
+    }
+
+    & > div:nth-child(even) {
+        background-color: rgb(127, 63, 191, 0.25)
+    }
+}
+
+.BtnAddItem {
+    padding: 1rem;
+
+    & > p {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    & > button {
+        display: block;
+        margin: auto;
+        width: 70%;
+        padding: .5rem;
+        border-radius: 10px;
+        border: none;
+        background-color: #7F3FBF;
+        color: #fff;
+        font-size: 1rem;
+    }
+}

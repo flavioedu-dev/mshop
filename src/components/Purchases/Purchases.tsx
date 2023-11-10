@@ -2,7 +2,15 @@ import "./Purchases.scss"
 
 import moveImg from "@/assets/move_img.png";
 
+import { useNavigate } from "react-router-dom";
+
 const Purchases = () => {
+
+  const navigate = useNavigate()
+
+  const navigateToPurchaseItem = (id: number) => {
+    navigate(`/purchase/${id}`)
+  }
 
   const x = true;
 
@@ -32,9 +40,9 @@ const Purchases = () => {
       <>
         {purchases.map((purchase) => (
           purchase.nome ? (
-            <section className="Purchases_item" key={purchase.id}><p>{purchase.nome + " - " + purchase.data}</p>  <img src={moveImg} alt="move" /></section>
+            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(purchase.id)}><p>{purchase.nome + " - " + purchase.data}</p>  <img src={moveImg} alt="move" /></section>
           ) : (
-            <section className="Purchases_item" key={purchase.id}><p>{purchase.local + " - " + purchase.data}</p> <img src={moveImg} alt="move" /></section>
+            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(purchase.id)}><p>{purchase.local + " - " + purchase.data}</p> <img src={moveImg} alt="move" /></section>
           )
         ))}
       </>
