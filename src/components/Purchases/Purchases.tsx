@@ -1,12 +1,43 @@
 import "./Purchases.scss"
 
+import moveImg from "@/assets/move_img.png";
+
 const Purchases = () => {
 
-  const x = false;
+  const x = true;
+
+  const purchases = [
+    {
+      id: 1,
+      nome: "Feira mensal",
+      local: "Mercado São Luiz",
+      data: "10/10/2010"
+    },
+    {
+      id: 2,
+      nome: "",
+      local: "Mercado São Luiz",
+      data: "10/11/2010"
+    },
+    {
+      id: 3,
+      nome: "Feira mensal 3",
+      local: "Mercado São Luiz",
+      data: "10/12/2010"
+    },
+  ]
 
   if(x) {
     return (
-      <section>Purchases</section>
+      <>
+        {purchases.map((purchase) => (
+          purchase.nome ? (
+            <section className="Purchases_item" key={purchase.id}><p>{purchase.nome + " - " + purchase.data}</p>  <img src={moveImg} alt="move" /></section>
+          ) : (
+            <section className="Purchases_item" key={purchase.id}><p>{purchase.local + " - " + purchase.data}</p> <img src={moveImg} alt="move" /></section>
+          )
+        ))}
+      </>
     )
   }
 
