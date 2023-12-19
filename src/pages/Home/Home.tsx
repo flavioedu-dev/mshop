@@ -1,17 +1,32 @@
-import Purchases from '../../components/Purchases/Purchases'
+import Purchases, { PurchaseType } from '../../components/Purchases/Purchases'
 import PurchaseButton from '../../components/PurchaseButton/PurchaseButton'
 import { UseFetch } from '@/hooks/UseFetch'
+import { useEffect } from 'react'
+
+const url = "https://localhost:7047/api/Purchase"
 
 const Home = () => {
 
-  const data = UseFetch()
+  const { data, httpConfig } = UseFetch(url)
+
+  useEffect(() => {
+    httpConfig()
+  }, [])
+
 
   console.log(data)
+  
+  const purchasesList = data as unknown as PurchaseType[]
 
   return (
     <>
       <main>
-        <Purchases />
+
+        {purchasesList && (
+          <Purchases purchases={purchasesList} />
+        )}
+
+        {/* <Purchases /> */}
         <PurchaseButton />
       </main>
     </>

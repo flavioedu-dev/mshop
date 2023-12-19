@@ -1,18 +1,58 @@
 import { useState, useEffect } from "react";
 
-export const UseFetch = () => {
-    const path = "https://localhost:7047/api"
+// type configType<T> = {
+//     method: string,
+//     headers?: {
+//         [key: string]: string
+//     },
+//     body?: T
+// }
 
-    const [data, setData] = useState([]);
+export const UseFetch = (url: string) => {
+    const [data, setData] = useState();
+    const [config, setConfig] = useState<RequestInit>();
 
-    const getAllUsers = async () => {
-        const res = await fetch(`${path}/User`).then(res => res.json())
-        setData(res)
+    const httpConfig = (method?: string, body?: unknown) => {
+        switch (method) {
+            case 'POST':
+                setConfig ({
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                })
+                break
+            case 'PUT':
+                setConfig ({
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                })
+                break
+            case 'DELETE':
+                setConfig ({
+                    method: 'DELETE',
+                })
+                break
+            default:
+                setConfig ({
+                    method: 'GET',
+                })
+        }
     }
-    
-    useEffect(() => {
-        getAllUsers();
-    }, [])
 
-    console.log(data)
+    useEffect(() => {
+        const fetchData = async () => {
+            const response = await fetch(url, config);
+            const data = await response.json();
+            setData(data);
+        }
+        
+        fetchData();
+    }, [config])
+
+    return { httpConfig, data }
 }
