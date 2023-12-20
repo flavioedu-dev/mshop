@@ -12,21 +12,15 @@ const Home = () => {
   useEffect(() => {
     httpConfig()
   }, [])
-
-
-  console.log(data)
   
   const purchasesList = data as unknown as PurchaseType[]
 
   return (
     <>
       <main>
-
         {purchasesList && (
           <Purchases purchases={purchasesList} />
         )}
-
-        {/* <Purchases /> */}
         <PurchaseButton />
       </main>
     </>
