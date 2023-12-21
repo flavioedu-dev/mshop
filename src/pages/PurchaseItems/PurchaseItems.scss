@@ -3,25 +3,37 @@
     padding-top: 2rem;
     height: 70vh;
 
-    border-bottom: 1px solid rgb(0, 0, 0, 0.50);
-
     & > h4 {
         margin-bottom: 1rem;
     }
 
     & > div {
+        overflow: scroll;
+        height: 100%;
+        padding-bottom: 1.5rem;
+    }
+
+    & > div > div {
         display: flex;
         justify-content: space-between;
         padding: 1.2rem;
     }
 
-    & > div:nth-child(even) {
+    & > div > div:nth-child(even) {
         background-color: rgb(127, 63, 191, 0.25)
     }
 }
 
 .BtnAddItem {
+    width: 100%;
+    position: fixed;
+    bottom: 1.5rem;
+    background-color: #fff;
+
     padding: 1rem;
+    padding-bottom: 2rem;
+
+    border-top: 1px solid rgb(0, 0, 0, 0.50);
 
     & > p {
         display: flex;

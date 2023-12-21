@@ -1,3 +1,11 @@
+.FormNewItem_container {
+    position: relative;
+    display: grid;
+    height: 55vh;
+    align-items: end;
+    padding: 1rem;
+}
+
 .FormNewItem {
     display: flex;
     flex-direction: column;
@@ -41,4 +49,11 @@
         color: #fff;
         border-radius: 5px;
     }
+}
+
+.error_message {
+    width: 100%;
+    position: absolute;
+    bottom: -2.5rem;
+    text-align: center;
 }

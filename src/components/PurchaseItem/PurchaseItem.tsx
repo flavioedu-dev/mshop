@@ -5,8 +5,8 @@ interface IPurchaseItemProps {
     url: string
 }
 
-type PurchaseItemType = {
-  id: string,
+export type PurchaseItemType = {
+  id?: string,
   name: string,
   price: number,
   amount: number

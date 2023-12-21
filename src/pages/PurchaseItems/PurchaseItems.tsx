@@ -28,11 +28,13 @@ const PurchaseItems = () => {
     <>
     <section className="PurchaseItems">
       <h4>{currentPurchase.title} - {currentPurchase.place}</h4>  
+      <div>
         <PurchaseItem url={`${url}/${id}/products`} />
+      </div>
     </section>
     <section className="BtnAddItem">
       <p>Total <span>${Number(currentPurchase.totalValue).toFixed(2) || 0}</span></p>
-      <button onClick={() => navigate("/purchase/:id/new-item")} >Adicionar item</button>
+      <button onClick={() => navigate(`/purchase/${id}/new-item`)} >Adicionar item</button>
     </section>
     </>
     )

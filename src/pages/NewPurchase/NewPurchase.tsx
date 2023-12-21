@@ -1,5 +1,5 @@
-import { FormEvent, useEffect, useRef, useState } from "react"
 import "./NewPurchase.scss"
+import { FormEvent, useEffect, useRef, useState } from "react"
 import { UseFetch } from "@/hooks/UseFetch"
 import { PurchaseType } from "@/components/Purchases/Purchases"
 
