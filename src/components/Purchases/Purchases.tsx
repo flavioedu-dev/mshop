@@ -8,6 +8,7 @@ export type PurchaseType = {
   id?: number,
   title: string,
   place: string,
+  totalValue?: number,
   date: Date
 }
 
@@ -19,7 +20,8 @@ const Purchases = ({ purchases }: PurchasesProps) => {
 
   const navigate = useNavigate()
 
-  const navigateToPurchaseItem = (id: number) => {
+  const navigateToPurchaseItem = (id: string) => {
+    console.log(id)
     navigate(`/purchase/${id}`)
   }
 
@@ -28,9 +30,9 @@ const Purchases = ({ purchases }: PurchasesProps) => {
       <>
         {purchases.map((purchase) => (
           purchase.title ? (
-            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(Number(purchase.id))}><p>{purchase.title + " - " + new Date(purchase.date).toLocaleDateString(`pt-BR`)}</p>  <img src={moveImg} alt="move" /></section>
+            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(String(purchase.id))}><p>{purchase.title + " - " + new Date(purchase.date).toLocaleDateString(`pt-BR`)}</p>  <img src={moveImg} alt="move" /></section>
           ) : (
-            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(Number(purchase.id))}><p>{purchase.place + " - " + new Date(purchase.date).toLocaleDateString(`pt-BR`)}</p> <img src={moveImg} alt="move" /></section>
+            <section className="Purchases_item" key={purchase.id} onClick={() => navigateToPurchaseItem(String(purchase.id))}><p>{purchase.place + " - " + new Date(purchase.date).toLocaleDateString(`pt-BR`)}</p> <img src={moveImg} alt="move" /></section>
           )
           ))}
       </>

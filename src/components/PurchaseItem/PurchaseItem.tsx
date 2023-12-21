@@ -1,16 +1,38 @@
-import { PurchaseItemType } from "@/pages/PurchaseItems/PurchaseItems"
+import { UseFetch } from "@/hooks/UseFetch"
+import { useEffect } from "react"
 
 interface IPurchaseItemProps {
-    item: PurchaseItemType
+    url: string
 }
 
-const PurchaseItem = ({ item }: IPurchaseItemProps) => {
+type PurchaseItemType = {
+  id: string,
+  name: string,
+  price: number,
+  amount: number
+}
+
+const PurchaseItem = ({ url }: IPurchaseItemProps) => {
+  const { data, httpConfig } = UseFetch(url)
+
+  useEffect(() => {
+    httpConfig
+  }, [])
+
+  const items = data as unknown as PurchaseItemType[]
+
   return (
-    <div>
-        <p key={item.id}>{item.name} x{item.quantity} - <span> ${item.price.toFixed(2)}</span></p>
-        <p>${(item.price * item.quantity).toFixed(2)}</p>
-    </div>
-  )
+      <>
+      {items && (
+        items.map((item) => (
+          <div key={item.id}>
+            <p>{item.name} x{item.amount} - <span>${item.price.toFixed(2)}</span></p>
+            <p>${(item.price * item.amount).toFixed(2)}</p>
+          </div>
+        ))
+        )}
+      </>
+    )
 }
 
 export default PurchaseItem

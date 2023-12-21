@@ -18,11 +18,11 @@ const Purchase = () => {
   const createNewPurchase = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setError("")
-
+    
     const currentTitle = titleRef.current!.value
     const currentPlace = placeRef.current!.value
     const currentDate = dateRef.current!.value
-
+    
     const newPurchase: PurchaseType = {
       title: currentTitle,
       place: currentPlace,
@@ -33,12 +33,13 @@ const Purchase = () => {
   }
 
   useEffect(() => {
-    console.log(data)
     if(call) {
       if(data?.status)
         setError("Erro ao cadastrar compra.")
       else {
         setSuccess("Compra cadastrada com sucesso.")
+        const formPurchase = document.querySelector<HTMLFormElement>(".NewPurchase")
+        formPurchase?.reset()
       }
     }
   }, [data])
@@ -48,7 +49,7 @@ const Purchase = () => {
       <form className="NewPurchase" onSubmit={createNewPurchase}>
         <div>
           <label>Nome</label>
-          <input type="text" name="name" id="name" ref={titleRef} placeholder="Feira da mensal (Opcional)" />
+          <input type="text" name="name" id="name" ref={titleRef} placeholder="Feira da mensal (Opcional)"/>
         </div>
         <div>
           <label>Local</label>

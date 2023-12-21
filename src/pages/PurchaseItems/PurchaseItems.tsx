@@ -1,64 +1,41 @@
 import PurchaseItem from "@/components/PurchaseItem/PurchaseItem";
 import "./PurchaseItems.scss"
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { UseFetch } from "@/hooks/UseFetch";
+import { PurchaseType } from "@/components/Purchases/Purchases";
 
-export type PurchaseItemType = {
-  id: number,
-  name: string,
-  price: number,
-  quantity: number
-}
+const url = "https://localhost:7047/api/Purchase"
 
 const PurchaseItems = () => {
 
+  const { id } = useParams()
+
   const navigate = useNavigate()
 
-  const [totalValue, setTotalValue] = useState<number>(0)
-
-  const purchaseItems: PurchaseItemType[] = [
-    {
-      id: 1,
-      name: "Arroz",
-      price: 4.90,
-      quantity: 5
-    },
-    {
-      id: 2,
-      name: "Feijão",
-      price: 7.99,
-      quantity: 2
-    },
-    {
-      id: 3,
-      name: "Cuscuz",
-      price: 2.0,
-      quantity: 7
-    },
-  ]
+  const { data, httpConfig } = UseFetch(`${url}/${id || "erro"}`)
 
   useEffect(() => {
-    setTotalValue(0)
-
-    purchaseItems.map((item) => {
-      setTotalValue(prev => prev + (item.price * item.quantity))
-    })
-  }, [purchaseItems])
-
+    httpConfig()
+  }, [])
+  
+  const currentPurchase = data as unknown as PurchaseType
+  
   return (
+    currentPurchase && (
     <>
     <section className="PurchaseItems">
-      <h4>Feira Mensal - Mercado São Luiz</h4>
-      {purchaseItems.map((item) => (
-        <PurchaseItem item={item} />
-      ))}
+      <h4>{currentPurchase.title} - {currentPurchase.place}</h4>  
+        <PurchaseItem url={`${url}/${id}/products`} />
     </section>
     <section className="BtnAddItem">
-      <p>Total <span>${totalValue.toFixed(2)}</span></p>
+      <p>Total <span>${Number(currentPurchase.totalValue).toFixed(2) || 0}</span></p>
       <button onClick={() => navigate("/purchase/:id/new-item")} >Adicionar item</button>
     </section>
     </>
+    )
   )
 }
 
