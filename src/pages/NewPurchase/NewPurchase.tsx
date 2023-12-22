@@ -2,10 +2,13 @@ import "./NewPurchase.scss"
 import { FormEvent, useEffect, useRef, useState } from "react"
 import { UseFetch } from "@/hooks/UseFetch"
 import { PurchaseType } from "@/components/Purchases/Purchases"
+import { useNavigate } from "react-router-dom"
 
 const url = "https://localhost:7047/api/Purchase"
 
 const Purchase = () => {
+  const navigate = useNavigate()
+
   const [error, setError] = useState<string>()
   const [success, setSuccess] = useState<string>()
 
@@ -14,6 +17,12 @@ const Purchase = () => {
   const dateRef = useRef<HTMLInputElement>(null)
 
   const { data, httpConfig, call } = UseFetch(url)
+
+  const redirectIfSuccess = () => {
+    setTimeout(() => {
+      navigate(`/`)
+    }, 1000)
+  }
 
   const createNewPurchase = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -40,6 +49,7 @@ const Purchase = () => {
         setSuccess("Compra cadastrada com sucesso.")
         const formPurchase = document.querySelector<HTMLFormElement>(".NewPurchase")
         formPurchase?.reset()
+        redirectIfSuccess()
       }
     }
   }, [data])

@@ -17,6 +17,7 @@
         display: flex;
         justify-content: space-between;
         padding: 1.2rem;
+        border-top: .5px solid rgba(0, 0, 0, 0.253);
     }
 
     & > div > div:nth-child(even) {

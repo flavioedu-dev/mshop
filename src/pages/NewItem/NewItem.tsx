@@ -59,7 +59,7 @@ const NewItem = () => {
         </div>
         <div>
           <label>Preço</label>
-          <input type="number" name="price_item" id="price_item" ref={priceRef} placeholder="8.99" required />
+          <input type="number" step="0.01" name="price_item" id="price_item" ref={priceRef} placeholder="8.99" required />
         </div>
         <div>
           <label>Quantidade</label>

@@ -1,5 +1,6 @@
 import { UseFetch } from "@/hooks/UseFetch"
 import { useEffect } from "react"
+import Loading from "../Loading/Loading"
 
 interface IPurchaseItemProps {
     url: string
@@ -16,23 +17,27 @@ const PurchaseItem = ({ url }: IPurchaseItemProps) => {
   const { data, httpConfig } = UseFetch(url)
 
   useEffect(() => {
-    httpConfig
+    httpConfig()
   }, [])
 
   const items = data as unknown as PurchaseItemType[]
 
   return (
-      <>
-      {items && (
-        items.map((item) => (
-          <div key={item.id}>
-            <p>{item.name} x{item.amount} - <span>${item.price.toFixed(2)}</span></p>
-            <p>${(item.price * item.amount).toFixed(2)}</p>
-          </div>
-        ))
-        )}
-      </>
-    )
+    <>
+    {items ? (
+      items.map((item) => (
+        <div key={item.id}>
+          <p>{item.name} x{item.amount} - <span>${item.price.toFixed(2)}</span></p>
+          <p>${(item.price * item.amount).toFixed(2)}</p>
+        </div>
+      ))
+      ) : (
+        <Loading />
+      )}
+
+    </>
+    
+  )
 }
 
 export default PurchaseItem

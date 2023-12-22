@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { UseFetch } from "@/hooks/UseFetch";
 import { PurchaseType } from "@/components/Purchases/Purchases";
+import Loading from "@/components/Loading/Loading";
 
 const url = "https://localhost:7047/api/Purchase"
 
 const PurchaseItems = () => {
-
   const { id } = useParams()
 
   const navigate = useNavigate()
@@ -24,12 +24,12 @@ const PurchaseItems = () => {
   const currentPurchase = data as unknown as PurchaseType
   
   return (
-    currentPurchase && (
+    currentPurchase ? (
     <>
     <section className="PurchaseItems">
       <h4>{currentPurchase.title} - {currentPurchase.place}</h4>  
       <div>
-        <PurchaseItem url={`${url}/${id}/products`} />
+        <PurchaseItem url={`${url}/${id}/products`}/>
       </div>
     </section>
     <section className="BtnAddItem">
@@ -37,6 +37,8 @@ const PurchaseItems = () => {
       <button onClick={() => navigate(`/purchase/${id}/new-item`)} >Adicionar item</button>
     </section>
     </>
+    ) : (
+      <Loading />
     )
   )
 }

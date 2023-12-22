@@ -2,6 +2,7 @@ import Purchases, { PurchaseType } from '../../components/Purchases/Purchases'
 import PurchaseButton from '../../components/PurchaseButton/PurchaseButton'
 import { UseFetch } from '@/hooks/UseFetch'
 import { useEffect } from 'react'
+import Loading from '@/components/Loading/Loading'
 
 const url = "https://localhost:7047/api/Purchase"
 
@@ -18,8 +19,10 @@ const Home = () => {
   return (
     <>
       <main>
-        {purchasesList && (
+        {purchasesList ? (
           <Purchases purchases={purchasesList} />
+        ) : (
+          <Loading />
         )}
         <PurchaseButton />
       </main>
