@@ -20,11 +20,13 @@ const Home = () => {
     <>
       <main>
         {purchasesList ? (
-          <Purchases purchases={purchasesList} />
+          <>
+            <Purchases purchases={purchasesList} />
+            <PurchaseButton />
+          </>
         ) : (
-          <Loading />
+            <Loading />
         )}
-        <PurchaseButton />
       </main>
     </>
   )
