@@ -1,6 +1,7 @@
 import { UseFetch } from "@/hooks/UseFetch"
 import { useEffect } from "react"
 import Loading from "../Loading/Loading"
+import NoOneFound from "../NoOneFound/NoOneFound"
 
 interface IPurchaseItemProps {
     url: string
@@ -25,12 +26,18 @@ const PurchaseItem = ({ url }: IPurchaseItemProps) => {
   return (
     <>
     {items ? (
-      items.map((item) => (
-        <div key={item.id}>
-          <p>{item.name} x{item.amount} - <span>${item.price.toFixed(2)}</span></p>
-          <p>${(item.price * item.amount).toFixed(2)}</p>
-        </div>
-      ))
+      items.length === 0 ? (
+        <NoOneFound>
+          <h2>Nenhum produto cadastrado</h2>
+        </NoOneFound>
+      ) : (
+        items.map((item) => (
+          <div key={item.id}>
+            <p>{item.name} x{item.amount} - <span>${item.price.toFixed(2)}</span></p>
+            <p>${(item.price * item.amount).toFixed(2)}</p>
+          </div>
+        ))
+      )
       ) : (
         <Loading />
       )}

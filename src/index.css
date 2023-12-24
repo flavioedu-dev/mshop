@@ -2,6 +2,7 @@
 
 :root {
   --color-first: #493159;
+  --not-found-color: #00000093;
 }
 
 * {

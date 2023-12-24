@@ -58,7 +58,6 @@ export const UseFetch = (url: string) => {
     }
 
     useEffect(() => {
-        console.log("Config", config)
         const fetchData = async () => {
             const response = await fetch(url, config);
             const data = await response.json();

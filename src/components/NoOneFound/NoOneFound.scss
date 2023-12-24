@@ -1,0 +1,11 @@
+.noOneFound {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    h2 {
+        color: var(--not-found-color);
+        font-size: 1.2rem;
+    }
+}

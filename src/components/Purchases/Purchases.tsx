@@ -3,6 +3,7 @@ import "./Purchases.scss"
 import moveImg from "@/assets/move_img.png";
 
 import { useNavigate } from "react-router-dom";
+import NoOneFound from "../NoOneFound/NoOneFound";
 
 export type PurchaseType = {
   id?: number,
@@ -21,12 +22,15 @@ const Purchases = ({ purchases }: PurchasesProps) => {
   const navigate = useNavigate()
 
   const navigateToPurchaseItem = (id: string) => {
-    console.log(id)
     navigate(`/purchase/${id}`)
   }
 
-  if(purchases.length !== 0) {
-    return (
+  return (
+    purchases.length === 0 ? (
+      <NoOneFound>
+        Nenhuma compra cadastrada.
+      </NoOneFound>
+    ) : (
       <>
         {purchases.map((purchase) => (
           purchase.title ? (
@@ -37,12 +41,7 @@ const Purchases = ({ purchases }: PurchasesProps) => {
           ))}
       </>
     )
-  }
-
-  return (
-    <section className="not_found_lists">
-      <h2>Nenhuma lista criada.</h2>
-    </section>
+    
   )
   
 }
