@@ -27,8 +27,8 @@ const Purchases = ({ purchases }: PurchasesProps) => {
 
   return (
     purchases.length === 0 ? (
-      <NoOneFound>
-        Nenhuma compra cadastrada.
+      <NoOneFound styleClass="noOne_Home">
+        <h2>Nenhuma compra cadastrada.</h2>
       </NoOneFound>
     ) : (
       <>

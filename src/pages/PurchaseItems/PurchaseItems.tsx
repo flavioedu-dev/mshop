@@ -28,7 +28,7 @@ const PurchaseItems = () => {
     <>
     <section className="PurchaseItems">
       <h4>{currentPurchase.title} - {currentPurchase.place}</h4>  
-      <div>
+      <div className="container_items">
         <PurchaseItem url={`${url}/${id}/products`}/>
       </div>
     </section>

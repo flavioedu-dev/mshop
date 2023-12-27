@@ -3,12 +3,13 @@ import "./NoOneFound.scss"
 import { ReactNode } from "react"
 
 interface NoOneFoundProps {
-    children: ReactNode
+  styleClass?: string,
+  children: ReactNode
 }
 
-const NoOneFound = ({ children }: NoOneFoundProps) => {
+const NoOneFound = ({ children, styleClass }: NoOneFoundProps) => {
   return (
-    <section className="noOneFound">
+    <section className={ styleClass || "noOneFound"}>
         {children}
     </section>
   )
