@@ -4,7 +4,8 @@ import Loading from "../Loading/Loading"
 import NoOneFound from "../NoOneFound/NoOneFound"
 
 interface IPurchaseItemProps {
-    url: string
+    url: string,
+    setSelectedItems: (ids: string[])=> void
 }
 
 export type PurchaseItemType = {
@@ -14,7 +15,7 @@ export type PurchaseItemType = {
   amount: number
 }
 
-const PurchaseItem = ({ url }: IPurchaseItemProps) => {
+const PurchaseItem = ({ url, setSelectedItems }: IPurchaseItemProps) => {
   const { data, httpConfig } = UseFetch(url)
 
   const [checkedItems, setCheckedItems] = useState<boolean[]>()
@@ -38,6 +39,16 @@ const PurchaseItem = ({ url }: IPurchaseItemProps) => {
   useEffect(() => {
     items && items.length > 0 ? setCheckedItems(new Array(items.length).fill(false)) : setCheckedItems([])
   }, [items])
+
+  useEffect(() => {
+    const listItems: string[] = []
+    checkedItems?.forEach((item, index) => {
+      if(item) {
+        listItems.push(String(items[index].id))
+      }
+    })
+    setSelectedItems(listItems)
+  }, [checkedItems])
 
   return (
     <>

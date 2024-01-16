@@ -3,6 +3,7 @@ import { FormEvent, useEffect, useRef, useState } from "react"
 import { UseFetch } from "@/hooks/UseFetch"
 import { useNavigate, useParams } from "react-router-dom"
 import { PurchaseItemType } from "@/components/PurchaseItem/PurchaseItem"
+import Header from "@/components/Header/Header"
 
 const url = "https://localhost:7047/api/Purchase"
 
@@ -51,31 +52,33 @@ const NewItem = () => {
   }, [data])
 
   return (
-    <section className="FormNewItem_container">
-      <form className="FormNewItem" onSubmit={addNewItemInPurchase}>
-        <div>
-          <label>Nome</label>
-          <input type="text" name="name_item" id="name_item" ref={nameRef}  placeholder="Canja" required/>
-        </div>
-        <div>
-          <label>Preço</label>
-          <input type="number" step="0.01" name="price_item" id="price_item" ref={priceRef} placeholder="8.99" required />
-        </div>
-        <div>
-          <label>Quantidade</label>
-          <input type="number" name="quantity_item" id="quantity_item" ref={amountRef} placeholder="3" required/>
-        </div>
+    <>
+      <Header pageTitle='Cadastrar produto' />
+      <section className="FormNewItem_container">
+        <form className="FormNewItem" onSubmit={addNewItemInPurchase}>
+          <div>
+            <label>Nome</label>
+            <input type="text" name="name_item" id="name_item" ref={nameRef}  placeholder="Canja" required/>
+          </div>
+          <div>
+            <label>Preço</label>
+            <input type="number" step="0.01" name="price_item" id="price_item" ref={priceRef} placeholder="8.99" required />
+          </div>
+          <div>
+            <label>Quantidade</label>
+            <input type="number" name="quantity_item" id="quantity_item" ref={amountRef} placeholder="3" required/>
+          </div>
 
-        <button>Criar</button>
-      </form>
+          <button>Criar</button>
+        </form>
 
-      {error !== "" ? (
-       <p className="error_message">{error}</p>
-       ) : (
-        <p className="error_message">{success}</p>
-       )}
-    </section>
-
+        {error !== "" ? (
+        <p className="error_message">{error}</p>
+        ) : (
+          <p className="error_message">{success}</p>
+        )}
+      </section>
+    </>
   )
 }
 

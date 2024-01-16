@@ -3,18 +3,21 @@
   background-color: var(--color-first);
 
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1.2rem 1rem;
   color: #fff;
+  text-align: center;
+  
+  & > h2 {
+    width: 100%;
+    font-weight: 300;
+    font-size: 1rem;
+  }
 
   div:nth-child(1) {
     font-size: 35px;
     display: inline-flex;
-  }
-
-  div:nth-child(2){
-    width: 3rem;
+    position: absolute;
   }
 
   div {

@@ -3,6 +3,7 @@ import PurchaseButton from '../../components/PurchaseButton/PurchaseButton'
 import { UseFetch } from '@/hooks/UseFetch'
 import { useEffect } from 'react'
 import Loading from '@/components/Loading/Loading'
+import Header from '@/components/Header/Header'
 
 const url = "https://localhost:7047/api/Purchase"
 
@@ -18,6 +19,7 @@ const Home = () => {
 
   return (
     <>
+      <Header pageTitle='Compras' />
       <main>
         {purchasesList ? (
           <>

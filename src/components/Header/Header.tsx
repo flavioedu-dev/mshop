@@ -1,20 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import "./Header.scss"
 
-import { AiOutlineMenu } from "react-icons/ai";
-import logo from "../../assets/logo.png"
+import { AiOutlineArrowLeft } from "react-icons/ai";
 
-import { useNavigate } from "react-router-dom"
+interface IHeaderProps {
+  pageTitle: string;
+}
 
-const Header = () => {
+const Header = ({ pageTitle }: IHeaderProps) => {
   
   const navigation = useNavigate()
 
   return (
     <header className="Header">
-      <div><AiOutlineMenu /></div>
-      <div>
-        <img src={logo} alt="logo" onClick={() => navigation("/")}/>
-      </div>
+      <div onClick={() => navigation(-1)}><AiOutlineArrowLeft /></div>
+        <h2>{pageTitle}</h2>
     </header>
   )
 }
